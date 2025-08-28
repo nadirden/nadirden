@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nadir | Hakkımda</title>
+  <meta name="description" content="Nadir'in kişisel web sayfası: Ahi Evran Üniversitesi Bilgisayar Mühendisliği 1. sınıf öğrencisi, oyun, müzik, yürüyüş ve sohbet meraklısı." />
+  <style>
+    /* ====== Temel Değişkenler ====== */
+    :root{
+      --bg: #0f1020;
+      --card: #17182e;
+      --fg: #e6e6f0;
+      --muted: #b6b7c9;
+      --accent: #9b87f5;
+      --accent-2: #57d6c6;
+      --ring: rgba(155,135,245,.35);
+      --radius-xl: 20px;
+      --radius-2xl: 28px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f6f7fb; --card:#ffffff; --fg:#10121a; --muted:#5a6172;
+        --accent:#6d5dfc; --accent-2:#1fbfaf; --ring:rgba(109,93,252,.25);
+        --shadow: 0 10px 25px rgba(10,10,40,.08);
+      }
+    }
+
+    /* ====== Genel ====== */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:radial-gradient(1200px 800px at 10% -10%, rgba(87,214,198,.12), transparent 60%),
+      radial-gradient(1200px 900px at 110% 10%, rgba(155,135,245,.12), transparent 60%), var(--bg);
+      color:var(--fg); font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    .container{width:min(1100px, 92%); margin-inline:auto}
+
+    /* ====== Üst Menü ====== */
+    header{
+      position:sticky; top:0; z-index:10; backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(to right, rgba(0,0,0,.0), rgba(0,0,0,.0)),
+                 color-mix(in oklab, var(--card) 80%, transparent);
+      border-bottom:1px solid color-mix(in oklab, var(--fg) 15%, transparent);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.2px}
+    .brand .badge{
+      width:38px; height:38px; border-radius:12px; background:
+      radial-gradient(circle at 30% 25%, var(--accent) 0 40%, transparent 41%),
+      radial-gradient(circle at 70% 70%, var(--accent-2) 0 45%, transparent 46%),
+      linear-gradient(135deg, color-mix(in oklab, var(--accent) 55%, var(--accent-2)) , var(--accent-2));
+      display:grid; place-items:center; color:white; box-shadow: var(--shadow);
+      font-weight:800;
+    }
+    .menu{display:flex; gap:14px}
+    .menu a{
+      padding:8px 12px; border-radius:12px; color:var(--muted);
+      border:1px solid transparent;
+    }
+    .menu a:hover, .menu a:focus{
+      color:var(--fg); border-color: color-mix(in oklab, var(--accent) 35%, transparent);
+      outline:none; box-shadow:0 0 0 6px var(--ring) inset;
+    }
+
+    /* ====== Hero ====== */
+    .hero{ padding: clamp(40px, 6vw, 70px) 0; }
+    .hero-wrap{display:grid; grid-template-columns: 1.1fr .9fr; gap:28px; align-items:center}
+    @media (max-width:900px){.hero-wrap{grid-template-columns:1fr}}
+
+    .card{background:var(--card); border:1px solid color-mix(in oklab, var(--fg) 12%, transparent); border-radius: var(--radius-2xl); box-shadow:var(--shadow)}
+
+    .intro{ padding:32px; position:relative; overflow:hidden}
+    .intro::after{
+      content:""; position:absolute; inset:auto -20% -40% -20%; height:55%;
+      background: radial-gradient(220px 220px at 20% 20%, color-mix(in oklab, var(--accent) 45%, transparent), transparent),
+                  radial-gradient(320px 220px at 80% 40%, color-mix(in oklab, var(--accent-2) 45%, transparent), transparent);
+      filter: blur(40px); opacity:.45; pointer-events:none;
+    }
+    .avatar{
+      width:92px; height:92px; border-radius:28px; background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      display:grid; place-items:center; color:white; font-weight:800; font-size:40px; box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.18);
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float{ 0%,100%{transform: translateY(0)} 50%{transform: translateY(-6px)} }
+
+    h1{font-size: clamp(26px, 3.2vw, 40px); margin: 10px 0 8px}
+    .sub{color:var(--muted)}
+
+    .chips{margin-top:16px; display:flex; flex-wrap:wrap; gap:10px}
+    .chip{padding:8px 12px; border-radius:999px; border:1px dashed color-mix(in oklab, var(--accent) 45%, transparent); color:var(--fg); background: color-mix(in oklab, var(--card) 70%, transparent)}
+
+    .quick{display:grid; gap:14px; padding:22px}
+    .quick a{display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:16px; border:1px solid color-mix(in oklab, var(--fg) 12%, transparent)}
+    .quick a:hover{outline:none; box-shadow:0 0 0 6px var(--ring) inset}
+
+    /* ====== Bölümler ====== */
+    section{scroll-margin-top:90px}
+
+    .grid{display:grid; gap:22px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:900px){.grid-3{grid-template-columns:1fr}; .grid-2{grid-template-columns:1fr}}
+
+    .section-title{font-size: clamp(20px, 2.2vw, 28px); margin: 22px 0 10px}
+    .muted{color:var(--muted)}
+
+    .card.pad{padding:22px}
+
+    .list{display:grid; gap:10px; margin:0; padding:0; list-style:none}
+    .list li{display:flex; gap:12px; align-items:flex-start; padding:12px; border-radius:14px; border:1px solid color-mix(in oklab, var(--fg) 12%, transparent)}
+
+    .tag{font:12px/1.2 ui-sans-serif, system-ui; padding:6px 10px; border-radius:999px; background:color-mix(in oklab, var(--accent) 12%, transparent); border:1px solid color-mix(in oklab, var(--accent) 35%, transparent)}
+
+    /* ====== İletişim ====== */
+    .contact .row{display:grid; grid-template-columns:1.2fr .8fr; gap:22px}
+    @media (max-width:900px){.contact .row{grid-template-columns:1fr}}
+    .contact a.btn{
+      display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:14px;
+      border:1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+    }
+    .contact a.btn:hover{box-shadow:0 0 0 6px var(--ring) inset}
+
+    footer{padding:40px 0; color:var(--muted); text-align:center}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="badge" aria-hidden="true">N</div>
+        <span>Nadir</span>
+      </div>
+      <nav class="menu" aria-label="Birincil">
+        <a href="#hakkimda">Hakkımda</a>
+        <a href="#ilgi">İlgi Alanlarım</a>
+        <a href="#hedef">Hedefler</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div class="intro card">
+          <div style="display:flex; gap:16px; align-items:center">
+            <div class="avatar" aria-hidden="true">N</div>
+            <div>
+              <h1>Selam, ben Nadir</h1>
+              <p class="sub">Ahi Evran Üniversitesi — Bilgisayar Mühendisliği 1. sınıf öğrencisi</p>
+            </div>
+          </div>
+          <div class="chips" aria-label="Etiketler">
+            <span class="chip">Oyun</span>
+            <span class="chip">Müzik</span>
+            <span class="chip">Yürüyüş</span>
+            <span class="chip">Sohbet</span>
+          </div>
+        </div>
+
+        <aside class="card" aria-label="Kısayollar">
+          <div class="quick">
+            <a href="#ilgi" title="İlgi Alanlarım">
+              <!-- gamepad svg -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 14l3-3m-3 3l3 3M15 12h2m-1 3v-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 18l2-2h6l2 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              İlgi Alanlarım
+            </a>
+            <a href="#hedef" title="Hedeflerim">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              Hedefler
+            </a>
+            <a href="#iletisim" title="İletişim">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="1.6"/><path d="M4 8l8 5 8-5" stroke="currentColor" stroke-width="1.6"/></svg>
+              Bana Ulaş
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Hakkımda -->
+    <section id="hakkimda" class="container">
+      <h2 class="section-title">Hakkımda</h2>
+      <div class="grid grid-2">
+        <article class="card pad">
+          <p>
+            Merhaba! Bilgisayar mühendisliği birinci sınıfta, temelleri sağlam öğrenmeye odaklıyım.
+            Boş zamanlarımda oyun oynarım, kulaklıkla yeni müzikler keşfederim, yürüyüşe çıkarım ve insanlarla sohbet etmeyi severim.
+          </p>
+          <ul class="list" aria-label="Öne çıkan bilgiler">
+            <li><span class="tag">Üniversite</span> Ahi Evran Üniversitesi</li>
+            <li><span class="tag">Bölüm</span> Bilgisayar Mühendisliği</li>
+            <li><span class="tag">Sınıf</span> 1</li>
+          </ul>
+        </article>
+        <article class="card pad">
+          <h3 style="margin:0 0 8px">Teknik İlgi</h3>
+          <p class="muted">Şu alanlarda ilerlemek istiyorum:</p>
+          <ul class="list">
+            <li>Web temelleri (HTML, CSS) → sağlam arayüzler</li>
+            <li>Programlama temelleri ve algoritmalar</li>
+            <li>Oyun geliştirme hakkında genel bakış</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- İlgi Alanlarım -->
+    <section id="ilgi" class="container">
+      <h2 class="section-title">İlgi Alanlarım</h2>
+      <div class="grid grid-3">
+        <article class="card pad">
+          <h3 style="margin-top:0; display:flex; align-items:center; gap:10px">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17l2-2h6l2 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><rect x="3" y="9" width="18" height="8" rx="3" stroke="currentColor" stroke-width="1.6"/></svg>
+            Oyun Oynamak
+          </h3>
+          <p class="muted">Rekabetçi ve hikâye odaklı oyunlarla vakit geçiririm. Eğlenirken analiz ve strateji geliştirmek hoşuma gider.</p>
+        </article>
+        <article class="card pad">
+          <h3 style="margin-top:0; display:flex; align-items:center; gap:10px">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 18V8a2 2 0 012-2h1l2-2h6l2 2h1a2 2 0 012 2v10" stroke="currentColor" stroke-width="1.6"/><path d="M8 18a2 2 0 11-4 0 2 2 0 014 0zm12 0a2 2 0 11-4 0 2 2 0 014 0zM12 9v6" stroke="currentColor" stroke-width="1.6"/></svg>
+            Müzik Dinlemek
+          </h3>
+          <p class="muted">Odaklanmak ve rahatlamak için müzik vazgeçilmez. Yeni listeler keşfetmeyi severim.</p>
+        </article>
+        <article class="card pad">
+          <h3 style="margin-top:0; display:flex; align-items:center; gap:10px">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20s3-6 8-6 8 6 8 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 4v6m0 0l-2-2m2 2l2-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            Yürüyüş & Sohbet
+          </h3>
+          <p class="muted">Açık havada yürürken sohbet etmek ve kafa dağıtmak iyi geliyor.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Hedefler -->
+    <section id="hedef" class="container">
+      <h2 class="section-title">Yakın Hedefler</h2>
+      <div class="grid grid-2">
+        <article class="card pad">
+          <h3 style="margin:0 0 8px">2025 Planı</h3>
+          <ul class="list">
+            <li>HTML & CSS ile 3 küçük proje daha</li>
+            <li>Algoritma ve veri yapılarına giriş</li>
+            <li>Git ve GitHub temelleri</li>
+          </ul>
+        </article>
+        <article class="card pad">
+          <h3 style="margin:0 0 8px">Uzun Vadeli</h3>
+          <ul class="list">
+            <li>Web uygulamaları geliştirmek</li>
+            <li>Oyun geliştirmeye göz atmak</li>
+            <li>Topluluklarla projelerde yer almak</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- İletişim -->
+    <section id="iletisim" class="container contact">
+      <h2 class="section-title">İletişim</h2>
+      <div class="row">
+        <article class="card pad">
+          <p class="muted">Bağlantı kurmak istersen aşağıdaki düğmeleri kullanabilirsin. (Örnek adresler, kendi bilgilerinle güncelleyebilirsin.)</p>
+          <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:12px">
+            <a class="btn" href="mailto:ornek@mail.com" aria-label="E-posta Gönder">📧 E‑posta</a>
+            <a class="btn" href="https://github.com/" target="_blank" rel="noopener">🐙 GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">💼 LinkedIn</a>
+          </div>
+        </article>
+        <aside class="card pad">
+          <h3 style="margin:0 0 8px">Hızlı Bilgiler</h3>
+          <ul class="list">
+            <li><span class="tag">Ad</span> Nadir</li>
+            <li><span class="tag">Okul</span> Ahi Evran Üniversitesi</li>
+            <li><span class="tag">Bölüm</span> Bilgisayar Mühendisliği</li>
+            <li><span class="tag">Sınıf</span> 1</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">© <span id="yil"></span> Nadir </div>
+    </footer>
+  </main>
+
+  <!-- Küçük bir progressive enhancement: JS olmadan da çalışır; tarih JS yoksa boş kalır. -->
+  <script>
+    (function(){
+      var y=document.getElementById('yil'); if(y) y.textContent=new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
